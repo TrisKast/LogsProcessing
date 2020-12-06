@@ -109,6 +109,4 @@ exports.computeMinDurations = (inputFile, groupBy, operationTypes) => {
     });
     return minPerType;
 };
-exports.testAdding = (a, b) => {
-    return a + b;
-};
+
