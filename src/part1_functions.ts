@@ -15,7 +15,7 @@ Readin of logfile; gets parsed in a 2D-tablelike-array
 Input: Logfile
 Output: 2D-array: rows: operations; cols: type | operationname | duration
 */
-exports.readLogFile = async (path:string) => {
+const readLogFile = async (path:string) => {
 
   const logFileArray: {operationType: string, operation: string, duration: number}[] = []
   for await (let line of lineReader(path)) {
@@ -53,7 +53,7 @@ using a pre-defined function
 Input: Logfile, groupBy attribute, set of operationtypes | operationnames
 Output: Dictionary mapping the average duration to the corresponding operationtype or operationname
 */
-exports.computeAverageDurations = (inputFile:{operationType: string, operation: string, duration: number}[], groupBy:string, operationTypes:string[]) => {
+const computeAverageDurations = (inputFile:{operationType: string, operation: string, duration: number}[], groupBy:string, operationTypes:string[]) => {
     const avgPerType:{[operationname: string]: Number} = {}
     operationTypes.forEach(operationTyp => {
         const typeSpecificOpsDuration: number[] = reduceToDuration(inputFile, groupBy, operationTyp)
@@ -69,7 +69,7 @@ I decided to built them as seperate functions, because even if they work basical
 the targeted outcome is a different one. Of course they could be combined into one function but I think it is clenaer
 to have one specific function for one specific task.
 */
-exports.computeMaxDurations = (inputFile:{operationType: string, operation: string, duration: number}[], groupBy:string, operationTypes:string[]) => {
+const computeMaxDurations = (inputFile:{operationType: string, operation: string, duration: number}[], groupBy:string, operationTypes:string[]) => {
     const maxPerType:{[operationname: string]: Number} = {}
     operationTypes.forEach(operationTyp => {
         maxPerType[operationTyp] = Math.max(...reduceToDuration(inputFile, groupBy, operationTyp))
@@ -81,10 +81,18 @@ exports.computeMaxDurations = (inputFile:{operationType: string, operation: stri
 /* 
 Pretty much the same as the function for exercise 4, calcualtes minimum instead of maximum
 */
-exports.computeMinDurations = (inputFile:{operationType: string, operation: string, duration: number}[], groupBy:string, operationTypes:string[]) => {
+const computeMinDurations = (inputFile:{operationType: string, operation: string, duration: number}[], groupBy:string, operationTypes:string[]) => {
     const minPerType:{[operationname: string]: Number} = {}
     operationTypes.forEach(operationTyp => {
         minPerType[operationTyp] = Math.min(...reduceToDuration(inputFile, groupBy, operationTyp))
     });   
     return minPerType
 }
+
+exports.readLogFile = readLogFile;
+exports.computeMinDurations = computeMinDurations;
+exports.computeMaxDurations = computeMaxDurations;
+exports.computeAverageDurations = computeAverageDurations;
+exports.calcAverage = calcAverage;
+exports.reduceToDuration = reduceToDuration;
+
