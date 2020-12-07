@@ -88,5 +88,3 @@ exports.computeMinDurations = (inputFile:{operationType: string, operation: stri
     });   
     return minPerType
 }
-
-exports.reduceToDuration;

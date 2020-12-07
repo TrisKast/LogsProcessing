@@ -107,4 +107,3 @@ exports.computeMinDurations = (inputFile, groupBy, operationTypes) => {
     });
     return minPerType;
 };
-exports.reduceToDuration;
