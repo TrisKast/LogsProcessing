@@ -15,7 +15,6 @@ var __asyncValues = (this && this.__asyncValues) || function (o) {
     function verb(n) { i[n] = o[n] && function (v) { return new Promise(function (resolve, reject) { v = o[n](v), settle(resolve, reject, v.done, v.value); }); }; }
     function settle(resolve, reject, d, v) { Promise.resolve(v).then(function(v) { resolve({ value: v, done: d }); }, reject); }
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 const fs = require('fs');
 const zlib = require('zlib');
 const readline = require('readline');
@@ -44,7 +43,6 @@ exports.readLogFile = (path) => __awaiter(void 0, void 0, void 0, function* () {
                     duration: parseFloat(operationElements[2].split(': ')[1])
                 });
             }
-            console.log(logFileArray);
         }
     }
     catch (e_1_1) { e_1 = { error: e_1_1 }; }
@@ -109,4 +107,4 @@ exports.computeMinDurations = (inputFile, groupBy, operationTypes) => {
     });
     return minPerType;
 };
-
+exports.reduceToDuration;

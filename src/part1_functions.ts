@@ -27,7 +27,6 @@ exports.readLogFile = async (path:string) => {
             duration: parseFloat(operationElements[2].split(': ')[1])
         })
     }
-    console.log(logFileArray)
   }
   return (logFileArray)
 
@@ -90,8 +89,4 @@ exports.computeMinDurations = (inputFile:{operationType: string, operation: stri
     return minPerType
 }
 
-exports.testAdding = (a,b) => {
-    return a+b;
-}
-
-export {};
+exports.reduceToDuration;

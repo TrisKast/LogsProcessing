@@ -1,4 +1,10 @@
 "use strict";
+// const { 
+//     readLogFile, 
+//     computeAverageDurations, 
+//     computeMaxDurations, 
+//     computeMinDurations 
+// } = require('./part1_functions');
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,11 +14,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-const { readLogFile, computeAverageDurations, computeMaxDurations, computeMinDurations } = require('./part1_functions');
+const part1Functions = require('./part1_functions');
 const { parseOPDurationsIntoDict, parseOPDurationsToSQLString, writeSQLStringAsFile } = require('./part2_functions');
 const main = (inputfilePath) => __awaiter(void 0, void 0, void 0, function* () {
     // Async, since logfiles can get quite large
-    const logFile = yield readLogFile(inputfilePath);
+    const logFile = yield part1Functions.readLogFile(inputfilePath);
     // Different operationTypes:
     const operationTypes = [...new Set(logFile.map(operation => operation.operationType))];
     // Different operations:
@@ -29,22 +35,22 @@ const main = (inputfilePath) => __awaiter(void 0, void 0, void 0, function* () {
     // Call the functions which write the requested information to stdout
     // Task 3a
     console.log('Average duration time per operation type: ');
-    console.log(computeAverageDurations(logFile, 'operationType', operationTypes));
+    console.table(part1Functions.computeAverageDurations(logFile, 'operationType', operationTypes));
     // Task 3b
     console.log('Average duration time per operation: ');
-    console.table(computeAverageDurations(logFile, 'operation', operations));
+    console.table(part1Functions.computeAverageDurations(logFile, 'operation', operations));
     // Task 4a
     console.log('Max durations per operation type: ');
-    console.log(computeMaxDurations(logFile, 'operationType', operationTypes));
+    console.table(part1Functions.computeMaxDurations(logFile, 'operationType', operationTypes));
     // Task 4b
     console.log('Max durations per operation: ');
-    console.table(computeMaxDurations(logFile, 'operation', operations));
+    console.table(part1Functions.computeMaxDurations(logFile, 'operation', operations));
     // Task 5a
     console.log('Min durations per operation type: ');
-    console.log(computeMinDurations(logFile, 'operationType', operationTypes));
+    console.table(part1Functions.computeMinDurations(logFile, 'operationType', operationTypes));
     // Task 5b
     console.log('Min durations per operation: ');
-    console.table(computeMinDurations(logFile, 'operation', operations));
+    console.table(part1Functions.computeMinDurations(logFile, 'operation', operations));
     // Part 2
     const opDurations = parseOPDurationsIntoDict(logFile, operations);
     const sqlInjectionFileContent = parseOPDurationsToSQLString(opDurations);

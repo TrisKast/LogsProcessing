@@ -1,9 +1,11 @@
-const { 
-    readLogFile, 
-    computeAverageDurations, 
-    computeMaxDurations, 
-    computeMinDurations 
-} = require('./part1_functions');
+// const { 
+//     readLogFile, 
+//     computeAverageDurations, 
+//     computeMaxDurations, 
+//     computeMinDurations 
+// } = require('./part1_functions');
+
+const part1Functions = require('./part1_functions')
 
 const { 
     parseOPDurationsIntoDict, 
@@ -16,14 +18,12 @@ const {
 const main = async (inputfilePath) => {
 
     // Async, since logfiles can get quite large
-    const logFile:{operationType: string, operation: string, duration: number}[] = await readLogFile(inputfilePath);
-
+    const logFile:{operationType: string, operation: string, duration: number}[] = await part1Functions.readLogFile(inputfilePath);
     // Different operationTypes:
     const operationTypes: string[] = [...new Set(logFile.map(operation => operation.operationType))];
 
     // Different operations:
     const operations: string[] = [...new Set(logFile.map(operation => operation.operation))];
-
 
     // Task 1
     // Get length of parsed logfile
@@ -36,28 +36,27 @@ const main = async (inputfilePath) => {
         console.log(`Performed ${operationTyp}s: ${typeSpecificOps.length}`)
     })
 
-
     // Call the functions which write the requested information to stdout
     // Task 3a
     console.log('Average duration time per operation type: ')
-    console.log(computeAverageDurations(logFile, 'operationType', operationTypes))
+    console.table(part1Functions.computeAverageDurations(logFile, 'operationType', operationTypes))
     // Task 3b
     console.log('Average duration time per operation: ')
-    console.table(computeAverageDurations(logFile, 'operation', operations))
+    console.table(part1Functions.computeAverageDurations(logFile, 'operation', operations))
 
     // Task 4a
     console.log('Max durations per operation type: ')
-    console.log(computeMaxDurations(logFile, 'operationType', operationTypes))
+    console.table(part1Functions.computeMaxDurations(logFile, 'operationType', operationTypes))
     // Task 4b
     console.log('Max durations per operation: ')
-    console.table(computeMaxDurations(logFile, 'operation', operations))
+    console.table(part1Functions.computeMaxDurations(logFile, 'operation', operations))
 
     // Task 5a
     console.log('Min durations per operation type: ')
-    console.log(computeMinDurations(logFile, 'operationType', operationTypes))
+    console.table(part1Functions.computeMinDurations(logFile, 'operationType', operationTypes))
     // Task 5b
     console.log('Min durations per operation: ')
-    console.table(computeMinDurations(logFile, 'operation', operations))
+    console.table(part1Functions.computeMinDurations(logFile, 'operation', operations))
 
     
     // Part 2
