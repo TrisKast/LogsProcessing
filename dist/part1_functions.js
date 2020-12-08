@@ -113,3 +113,4 @@ exports.computeMaxDurations = computeMaxDurations;
 exports.computeAverageDurations = computeAverageDurations;
 exports.calcAverage = calcAverage;
 exports.reduceToDuration = reduceToDuration;
+exports.lineReader = lineReader;

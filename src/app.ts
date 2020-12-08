@@ -15,7 +15,7 @@ const {
 } = require('./part2_functions');
 
 
-const main = async (inputfilePath) => {
+const main = async (inputfilePath:String) => {
 
     // Async, since logfiles can get quite large
     const logFile:{operationType: string, operation: string, duration: number}[] = await part1Functions.readLogFile(inputfilePath);

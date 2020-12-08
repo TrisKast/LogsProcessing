@@ -6,7 +6,7 @@ const readline = require('readline');
 const calcAverage = (array: number[]) => array.reduce((sum, value) => sum + value) / array.length;
 
 // Define reader for logfile, reads line by line
-const lineReader = (path) => readline.createInterface({
+const lineReader = (path: String) => readline.createInterface({
   input: fs.createReadStream(path).pipe(zlib.createGunzip())
 });
 
@@ -95,4 +95,5 @@ exports.computeMaxDurations = computeMaxDurations;
 exports.computeAverageDurations = computeAverageDurations;
 exports.calcAverage = calcAverage;
 exports.reduceToDuration = reduceToDuration;
+exports.lineReader = lineReader;
 

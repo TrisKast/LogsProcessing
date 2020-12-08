@@ -50,7 +50,7 @@ exports.parseOPDurationsToSQLString = (opDurationDict:{[operationname: string]:{
 
 // Wrapper for writing the SQL string to a file
 exports.writeSQLStringAsFile = (sqlString: string, outfile: string) => {
-    fs.writeFile(outfile, sqlString, function(err) {
+    fs.writeFile(outfile, sqlString, function(err:String) {
         if(err) {
             return console.log(err);
         }
